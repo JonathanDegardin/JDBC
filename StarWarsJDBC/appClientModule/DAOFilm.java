@@ -18,14 +18,14 @@ public class DAOFilm {
 
   public DAOFilm() {
 			try {
-				String strClassName = "com.mysql.jdbc.Driver";
-				String dbName= "cinema"; 
-				String login= "root"; 
-				String motdepasse= ""; 
-				String strUrl = "jdbc:mysql://localhost:3308/" +  dbName +"?autoReconnect=true&useSSL=false";
+				this.strClassName = "com.mysql.jdbc.Driver";
+				this.dbName= "cinema"; 
+				this.login= "root"; 
+				this.motdepasse= ""; 
+				this.strUrl = "jdbc:mysql://localhost:3308/" +  dbName +"?autoReconnect=true&useSSL=false";
 				Class.forName(strClassName);
-				Connection conn = DriverManager.getConnection(strUrl, login, motdepasse);
-				Statement stAddUser = conn.createStatement(); 
+				this.conn = DriverManager.getConnection(strUrl, login, motdepasse);
+				this.stAddUser = conn.createStatement(); 
 			} 
 			catch(ClassNotFoundException e) {  
 				System.err.println("Driver non chargé !");  e.printStackTrace();
@@ -71,8 +71,7 @@ public class DAOFilm {
 	  }
   	public void add(int id,String titre,int sortie,int numero,int cout,int recette) {	
   		try { 
-
-  			this.stAddUser.executeUpdate("insert into Film values (id,'StarWars',2004 ,2,350,470)");
+  			this.stAddUser.executeUpdate("insert into Film values (" + id + ",'" + titre +"',"+ sortie+ "," + numero + "," + cout + ","+ recette +")");
  
 		}
   		catch(SQLException e) {
